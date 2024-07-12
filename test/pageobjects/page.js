@@ -10,16 +10,10 @@ class LoginWeb{
 
     //Page Actions
     async loginProccess(namaUser, passUser){
+        await browser.url('https://app.prosigmaka.com/login')
         await this.isiEmail.setValue(namaUser)
         await this.isiPassw.setValue(passUser)
         await this.loginBtn.click()
-    }
-    async namaWeb(){
-        await browser.url('https://app.prosigmaka.com/login')
-    }
-
-    async menuTA(){
-        await this.TAbtn.click()
     }
 }
 
