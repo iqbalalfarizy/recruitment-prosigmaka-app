@@ -37,24 +37,32 @@ describe('Aplicant List Page', function() {
         it(`User mengubah page size menjadi ${i} tampilan`, async function(){
             await browser.pause(1000)
             await ApplicantList.clickPageSize()
+            await browser.pause(1000)
             await action[i]()
+            await browser.pause(1000)
             await expect (ApplicantList.showingText).toHaveTextContaining(`Showing 1 to ${i}`) 
         })
         
         it(`User mengganti halaman ke halaman next pada page size ${i}`, async function(){
+            await browser.pause(1000)
             if(await ApplicantList.nextButton.isClickable()){
                 await ApplicantList.clickNextButton()
-                await expect (ApplicantList.showingText).toHaveTextContaining(`Showing ${i+1} to ${i+i}`) 
+                await browser.pause(1000)
+                await expect (ApplicantList.showingText).toHaveTextContaining(`Showing ${i+1} to ${i+i}`)
+            }else{
+                await expect (ApplicantList.showingText).toHaveTextContaining(`Showing 1 to ${i}`)   
             }
-            await expect (ApplicantList.showingText).toHaveTextContaining(`Showing 1 to ${i}`)   
         })
     
         it(`User mengganti halaman ke halaman previous pada page size ${i}`, async function(){
+            await browser.pause(1000)
             if(await ApplicantList.previousButton.isClickable()){
                 await ApplicantList.clickPreviousButton()
+                await browser.pause(1000)
                 await expect (ApplicantList.showingText).toHaveTextContaining(`Showing 1 to ${i}`) 
+            }else{
+                await expect (ApplicantList.showingText).toHaveTextContaining(`Showing 1 to ${i}`)   
             }
-            await expect (ApplicantList.showingText).toHaveTextContaining(`Showing 1 to ${i}`)   
         }) 
 
 

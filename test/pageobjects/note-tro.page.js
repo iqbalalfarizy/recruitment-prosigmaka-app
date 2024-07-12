@@ -69,9 +69,12 @@ class noteTROPage{
         await browser.switchToWindow(handles[handles.length - 1])
     }
 
-    async GoNoteTRO(){
+    async goToApplicantList(){
         await this.appList.click()
+    }
+    async GoNoteTRO(){
         await this.garis3.click()
+        await browser.pause(2000)
         await this.upMen.click()
     }
 
