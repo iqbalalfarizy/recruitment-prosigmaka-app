@@ -1,17 +1,16 @@
 import { browser, $, expect } from '@wdio/globals'
 import authLogin from '../pageobjects/page.js'
 import noteTROPage from '../pageobjects/note-tro.page.js'
+import ApplicantList from '../pageobjects/applicant-list.page.js'
 
 
 describe('UJI Halaman Note TRO Recruitment App Pro Sigmaka', function(){
     before('User ke halaman Note TRO', async function(){
         // login
-        await authLogin.namaWeb()
-        await authLogin.LoginProccess('dummy@prosigmaka.com','dummypsm')
-        await authLogin.menuTA()
-
+        await authLogin.loginProccess('dummy@prosigmaka.com','dummypsm')
+        await ApplicantList.goToApplicantList()
         // klik menu Note TRO
-        await noteTROPage.GoNoteTRO()       // klik applist + garis 3 + update resume
+        await noteTROPage.GoNoteTRO()       // garis 3 + update resume
         await noteTROPage.UpdateMenWEb()    // ganti halaman ke update resume 
         await noteTROPage.NoteTROClicked()  // klik note TRO
     })
@@ -111,9 +110,10 @@ describe('UJI Halaman Note TRO Recruitment App Pro Sigmaka', function(){
     describe('Respon halaman Applicant List berdasarkan update Note TRO', function(){
         beforeEach('User ke halaman Note TRO', async function(){
             // klik menu Note TRO
-            await noteTROPage.GoNoteTRO()       // klik applist + garis 3 + update resume
-            await noteTROPage.UpdateMenWEb()    // ganti halaman ke update resume 
-            await noteTROPage.NoteTROClicked()  // klik note TRO
+            await noteTROPage.goToApplicantList()   // klik applist 
+            await noteTROPage.GoNoteTRO()           // garis 3 + update resume
+            await noteTROPage.UpdateMenWEb()        // ganti halaman ke update resume 
+            await noteTROPage.NoteTROClicked()      // klik note TRO
         })
         it('[001] User melakukan update seluruh data ', async function(){
             await noteTROPage.UbahData()
@@ -209,7 +209,8 @@ describe('UJI Halaman Note TRO Recruitment App Pro Sigmaka', function(){
     describe('Respon halaman Detail-Profile berdasarkan update Note TRO', function(){
         beforeEach('User ke halaman Note TRO', async function(){
             // klik menu Note TRO
-            await noteTROPage.GoNoteTRO()       // klik applist + garis 3 + update resume
+            await noteTROPage.goToApplicantList()   // klik applist 
+            await noteTROPage.GoNoteTRO()           // garis 3 + update resume
             await noteTROPage.UpdateMenWEb()    // ganti halaman ke update resume 
             await noteTROPage.NoteTROClicked()  // klik note TRO
         })

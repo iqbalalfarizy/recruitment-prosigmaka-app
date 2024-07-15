@@ -3,7 +3,7 @@ import {$} from '@wdio/globals'
 
 class HalamanUpdatePendidikan{
     //Element Locator
-    get updateButton () { return $('//tr[2]/td[9]/section/ul/li[2]') }
+    get updateButton () { return $('//tr[2]/td[9]/section/ul/li/a[contains(text(),"Update Resume")]') }
     get pendidikanButton () { return $('//*[@id="root"]/div[1]/div/main/div/div/div/div/div/button[2]') }
     get ubahButton () { return $('//button[@class="btn text-white btn-sm btn-primary"]') }
     get plusButton () { return $('//*[@id="root"]/div[1]/div/main/div/div/form/div/div[2]/div[1]/div/section/section[1]/button[1]') }

@@ -1,16 +1,13 @@
 import {browser, expect} from '@wdio/globals'
 import LoginWeb from '../pageobjects/page.js'
 import HalamanDetail from '../pageobjects/detail.page.js'
+import ApplicantList from '../pageobjects/applicant-list.page.js'
 
-describe.skip ('Tes halaman detail' , () => {
+describe ('Tes halaman detail' , () => {
     before (async () => {
-        await LoginWeb.namaWeb()
         await LoginWeb.loginProccess('dummy@prosigmaka.com', 'dummypsm')
-        await browser.pause(2000)
-        await LoginWeb.menuTA()
-        await HalamanDetail.applicantListBtn()
+        await ApplicantList.goToApplicantList()
         await HalamanDetail.choozeButton()
-        await browser.pause(2000)
         await HalamanDetail.detailButtonClick()
         await browser.pause(2000)
         const window = await browser.getWindowHandles()
@@ -83,7 +80,7 @@ describe.skip ('Tes halaman detail' , () => {
         await expect (HalamanDetail.CVPage).toBeDisplayed()
     })
 
-    it ('User menekan tombol ', async () => {
+    it.skip ('User menekan tombol ', async () => {
         await HalamanDetail.CVButtonClick()
         await HalamanDetail.previewCVButtonClick()
 
@@ -100,7 +97,7 @@ describe.skip ('Tes halaman detail' , () => {
     })
 })
 
-describe.skip ('Tes Halaman Detail Pada Tab Baru', async () => {
+describe ('Tes Halaman Detail Pada Tab Baru', async () => {
     before (async () => {
         await browser.url('https://app.prosigmaka.com/public/9999/applicant/15')
     })

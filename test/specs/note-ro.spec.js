@@ -1,12 +1,13 @@
 import { browser, $, expect } from '@wdio/globals'
 import authLogin from '../pageobjects/page.js'
 import NoteRO from '../pageobjects/note-ro.page.js'
+import ApplicantList from '../pageobjects/applicant-list.page.js'
+
 
 describe('UJI Halaman Note RO Recruitment App Pro Sigmaka', function(){
     before('User Login Dulu', async function(){
-        await authLogin.namaWeb()
         await authLogin.loginProccess('dummy@prosigmaka.com','dummypsm')
-        await authLogin.menuTA()
+        await ApplicantList.goToApplicantList()
         await NoteRO.ALpage()
     })
 
@@ -188,6 +189,7 @@ describe('UJI Halaman Note RO Recruitment App Pro Sigmaka', function(){
     describe('(MDP.01.003). Uji Manipulasi Form Note RO', function(){
         it('Klik Button Ubah Data, dan Isi form Domisili', async function(){
             //Klik button biru
+            await NoteRO.TabUpdateResume()
             await NoteRO.UbahData()
             await browser.pause(2000)
             const setDom = await NoteRO.setDom('Jakarta')
